@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","30309","@Web Browser Context Playwright Test","","Tue Oct 21 16:27:16 PKT 2025","broken","Tue Oct 21 16:27:46 PKT 2025","","UIBasicstest.spec.js","",""
+"","2244","@Web UI Controls","","Tue Oct 21 16:28:54 PKT 2025","passed","Tue Oct 21 16:28:56 PKT 2025","","UIBasicstest.spec.js","",""

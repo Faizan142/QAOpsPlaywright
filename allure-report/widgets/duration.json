@@ -1,0 +1,1 @@
+[{"uid":"2f5000b07b2f97db","name":"@Web Browser Context Playwright Test","time":{"start":1761046036324,"stop":1761046066633,"duration":30309},"status":"broken","severity":"normal"},{"uid":"e990651e2f7d4ca2","name":"@Web UI Controls","time":{"start":1761046134099,"stop":1761046136343,"duration":2244},"status":"passed","severity":"normal"}]
