@@ -25,6 +25,9 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Check Playwright version
+        run: npx playwright --version
+
       - name: Run Playwright tests
         env:
           PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
