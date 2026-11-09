@@ -1,45 +1,73 @@
+```yaml
 name: Playwright Tests
 
 on:
   push:
-    branches: [ main, master ]
+    branches:
+      - main
+      - master
+
   pull_request:
-    branches: [ main, master ]
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: read
 
 jobs:
   test:
-    timeout-minutes: 60
+    name: Playwright Tests
     runs-on: ubuntu-24.04
+    timeout-minutes: 60
 
     steps:
+
+      # 1. Checkout code
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: npm
 
+      # 3. Install npm dependencies
       - name: Install dependencies
         run: npm ci
 
+      # 4. Install Playwright browsers
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
 
+      # 5. Login to Azure
       - name: Login to Azure
         uses: azure/login@v3
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      # 6. Verify Azure login
+      - name: Verify Azure login
+        run: az account show
+
+      # 7. Run Playwright tests on Azure Playwright Workspaces
       - name: Run Playwright tests
         env:
           PLAYWRIGHT_SERVICE_URL: ${{ secrets.PLAYWRIGHT_SERVICE_URL }}
-        run: npx playwright test --config=playwright.service.config.js --workers=4
+        run: |
+          npx playwright test \
+            --config=playwright.service.config.js \
+            --workers=4
 
+      # 8. Upload Playwright report
       - name: Upload Playwright report
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: playwright-report
           path: playwright-report/
+          if-no-files-found: warn
+          retention-days: 14
+```
