@@ -17,6 +17,7 @@ test("Calendar validations",async({page})=>{
     await page.locator(".react-calendar__year-view__months__month").nth(Number(monthNumber)-1).click()
     await page.locator("//abbr[text()='"+ date +"']").click()
     //await expect(year).toContainText("2027");
+    //calendar test
     const inputs = await page.locator(".react-date-picker__inputGroup input")
     for(let index =0; index < inputs.length; i++){
         const value = inputs[index].getAttribute("value")
